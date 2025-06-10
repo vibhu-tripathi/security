@@ -13,6 +13,7 @@ public class SecurityService implements UserDetailsService {
     public SecurityService(UserRepo userRepo) {
         this.userRepo = userRepo;
 System.out.println("SecurityService constructor called with userRepo: " + userRepo);
+
         // This will print the UserRepo instance to verify it's being injected correctly
     }
 
