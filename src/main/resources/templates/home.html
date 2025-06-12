@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>OAuth 2 Login</title>
+</head>
+<body>
+<h2>Welcome</h2>
+<div th:if="${user != null}">
+    <p>Name: <span th:text="${user.getAttribute('name')}"></span></p>
+    <p>Email: <span th:text="${user.getAttribute('email')}"></span></p>
+    <a href="/logout">Logout</a>
+</div>
+<div th:if="${user == null}">
+    <a href="/oauth2/authorization/google">Login with Google</a>
+</div>
+</body>
+</html>
