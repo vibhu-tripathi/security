@@ -37,11 +37,13 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/admin").hasAuthority("ROLE_ADMIN")
                         .requestMatchers("/user").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN", "SUPER_ADMIN")
+                        .requestMatchers("/error").permitAll()
                         .anyRequest().permitAll()
+
                 )
                 .formLogin(Customizer.withDefaults()).httpBasic(Customizer.withDefaults())
                 .oauth2Login(oauth -> oauth
-                        .defaultSuccessUrl("/", true) // or any other page like "/dashboard"
+                        .defaultSuccessUrl("/", true)
                 )
                 .build();
     }
