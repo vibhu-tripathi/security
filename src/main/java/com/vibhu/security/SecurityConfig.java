@@ -40,6 +40,9 @@ public class SecurityConfig {
                         .anyRequest().permitAll()
                 )
                 .formLogin(Customizer.withDefaults()).httpBasic(Customizer.withDefaults())
+                .oauth2Login(oauth -> oauth
+                        .defaultSuccessUrl("/", true) // or any other page like "/dashboard"
+                )
                 .build();
     }
 }
