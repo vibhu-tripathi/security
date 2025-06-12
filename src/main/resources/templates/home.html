@@ -2,16 +2,32 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>OAuth 2 Login</title>
+    <meta charset="UTF-8">
 </head>
 <body>
 <h2>Welcome</h2>
+
+<!-- Logged-in user view -->
 <div th:if="${user != null}">
-    <p>Name: <span th:text="${user.getAttribute('name')}"></span></p>
-    <p>Email: <span th:text="${user.getAttribute('email')}"></span></p>
+    <p><strong>Name:</strong> <span th:text="${user.getAttribute('name')}"></span></p>
+    <p><strong>Email:</strong> <span th:text="${user.getAttribute('email')}"></span></p>
+
+    <h3>All Attributes:</h3>
+    <ul>
+        <li th:each="entry : ${user.attributes}">
+            <strong th:text="${entry.key}">Key</strong>:
+            <span th:text="${entry.value}">Value</span>
+        </li>
+    </ul>
+
     <a href="/logout">Logout</a>
 </div>
+
+<!-- Not logged-in view -->
 <div th:if="${user == null}">
-    <a href="/oauth2/authorization/google">Login with Google</a>
+    <a href="/oauth2/authorization/google">Login with Google</a><br/>
+    <a href="/oauth2/authorization/github">Login with GitHub</a>
 </div>
+
 </body>
 </html>
